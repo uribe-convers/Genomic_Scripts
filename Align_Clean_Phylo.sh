@@ -26,28 +26,27 @@ mkdir Alignments Fasta Phylo
 ## Align with Mafft, clean with Phyutility, and analyze with FastTree
 
 # Alignment
-for i in *.fasta
-do
-# Align
-echo ""
-echo "~~~Aligning with Mafft~~~"
-echo ""
-time mafft --auto --thread 6 --preservecase $i > $i.aln
+for i in *.fasta; do \
+    # Align
+    echo ""
+    echo "~~~Aligning with Mafft~~~"
+    echo ""
+    time mafft --auto --thread 6 --preservecase $i > $i.aln
 
-# Cleaninig Alignment at 50% occupancy per site
-echo ""
-echo "~~~Cleaninig alignment with Phyutility at at 50% occupancy per site~~~"
-echo ""
-time phyutility -clean 0.5 -in $i".aln" -out $i"_cleaned_05.aln"
+    # Cleaninig Alignment at 50% occupancy per site
+    echo ""
+    echo "~~~Cleaninig alignment with Phyutility at at 50% occupancy per site~~~"
+    echo ""
+    time phyutility -clean 0.5 -in $i".aln" -out $i"_cleaned_05.aln"
 
-# Phylogenetics
-echo ""
-echo "~~~Building phylogeny with FastTre~~~"
-echo ""
-time FastTree -nt -gtr < $i"_cleaned_05.aln" > $i".tre"
+    # Phylogenetics
+    echo ""
+    echo "~~~Building phylogeny with FastTre~~~"
+    echo ""
+    time FastTree -nt -gtr < $i"_cleaned_05.aln" > $i".tre"
 
-# House keeping
-mv $i".aln" $i"_cleaned_05.aln" Alignments
-mv $i".tre" Phylo
-mv $i Fasta
+    # House keeping
+    mv $i".aln" $i"_cleaned_05.aln" Alignments
+    mv $i".tre" Phylo
+    mv $i Fasta
 done
