@@ -9,7 +9,7 @@ from Bio import SeqIO
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage Error, type: python "+sys.argv[0]+" 1st_fasta_file 2nd_fasta_file results_file")
+        print("Usage Error, type: python "+sys.argv[0]+" fasta_file_1 fasta_file_2 results_file")
         sys.exit(0)
 
 file1 = SeqIO.parse(open(sys.argv[1]),'fasta')
