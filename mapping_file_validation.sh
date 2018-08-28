@@ -4,7 +4,7 @@
 # Usage: ./mapping_file_validation.sh mapping_file.tsv
 
 # Delete any empty lines if there are any
-cat $1 | sed -r 's/^\s+$//' | sed '/^$/d' > tmp
+cat $1 | sed '/^\s*$/d' > tmp
 mv tmp $1
 
 # Chack that the barcodes and sanple names are unique
