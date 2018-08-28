@@ -12,11 +12,11 @@ INDICES=$(cat $1 | cut -f 1 | uniq -c | cut -d " " -f 4 | uniq)
 SAMPLES=$(cat $1 | cut -f 2 | uniq -c | cut -d " " -f 4 | uniq)
 if [[ $INDICES == 1 && $SAMPLES == 1 ]]; then
     printf "\n-------------------------------------------------------
-    All good! indices and sample names are unique\n-------------------------------------------------------\n"
+    All good! Indices and sample names are unique\n-------------------------------------------------------\n"
     
 elif [[ $INDICES > 1 ]]; then
     printf "\n------------------------------------
-    STOP! indices are repeated\n------------------------------------\n"
+    STOP! Indices are repeated\n------------------------------------\n"
 elif [[ $SAMPLES > 1 ]]; then
     printf "\n----------------------------------------
     STOP! Sample names are repeated\n----------------------------------------\n"
